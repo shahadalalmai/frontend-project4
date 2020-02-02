@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Alert from 'react-bootstrap/Alert'
 
-class AlertDismissible extends React.Component {
+class AlertDismissible extends Component { // React.Component
     constructor(props) {
       super(props);
       this.state = {
