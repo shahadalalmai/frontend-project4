@@ -13,8 +13,9 @@ class TicketUpdate extends Component {
      }
 
     componentDidMount() {
+        const user = this.props.user
         const ticketId = this.props.match.params.id
-        show(ticketId)
+        show(user, ticketId)
         .then( response => {
             const ticket = response.data.ticket
             this.setState({
@@ -37,12 +38,13 @@ class TicketUpdate extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
+        const user = this.props.user
         // const formDataCopy = {...this.state.formData}
         const ticket = {...this.state.ticket}
         const ticketId = this.props.match.params.id
         // console.log(this.state)
         // console.log(ticket)
-        update(ticket, ticketId)
+        update(user, ticket, ticketId)
         .then(() => alert("Ticket Updated Sucessfully"))
         // .then(() => console.log(ticket))
         .catch((error) => console.log(error))
@@ -56,11 +58,32 @@ class TicketUpdate extends Component {
             <h1>Hi this is TicketUpdate Component</h1>
             <form onSubmit={this.handleSubmit}>
                     <label>Source: </label>
-                    <input onChange={this.handleChange} type="text" name="source" value={this.state.ticket.source}/> <br/>
+
+                    <select name="source" value={this.state.ticket.source} onChange={this.handleChange}>
+                        <option value="Olaya Metro Station">Olaya Metro Station</option>
+                        <option value="Western Metro Station">Western Metro Station</option>
+                        <option value="King Abdullah Financial District Metro Station">King Abdullah Financial District Metro Station</option>
+                        <option value="Qasr Al-Hukm Metro Station">Qasr Al-Hukm Metro Station</option>
+                    </select> <br/>
+                    
+                    {/* <input onChange={this.handleChange} type="text" name="source" value={this.state.ticket.source} placeholder="Source Station"/><br/> */}
+                    
                     <label>Destination: </label>
-                    <input onChange={this.handleChange} type="text" name="destination" value={this.state.ticket.destination}/> <br/>
+
+                    <select name="destination" value={this.state.ticket.destination} onChange={this.handleChange}>
+                        <option value="Olaya Metro Station">Olaya Metro Station</option>
+                        <option value="Western Metro Station">Western Metro Station</option>
+                        <option value="King Abdullah Financial District Metro Station">King Abdullah Financial District Metro Station</option>
+                        <option value="Qasr Al-Hukm Metro Station">Qasr Al-Hukm Metro Station</option>
+                    </select>  <br/>
+
+                    {/* <input onChange={this.handleChange} type="text" name="source" value={this.state.ticket.source}/> <br/>
+                    <label>Destination: </label>
+                    <input onChange={this.handleChange} type="text" name="destination" value={this.state.ticket.destination}/> <br/> */}
                     <label>Date: </label>
-                    <input onChange={this.handleChange} type="text" name="date" value={this.state.ticket.date}/> <br/>
+                    {/* <input onChange={this.handleChange} type="text" name="date" value={this.state.ticket.date}/> <br/> */}
+                    <input onChange={this.handleChange} type="date" name="date" value={this.state.ticket.date}/><br/>
+                    
                     <label>Price: {this.state.ticket.price} SAR</label> <br/>
                     <input type="submit" value="Submit"/>
                     <Link to="/tickets"> Back</Link>

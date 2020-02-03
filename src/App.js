@@ -11,7 +11,7 @@ import ChangePassword from './auth/components/ChangePassword'
 import AlertDismissible from './auth/components/AlertDismissible'
 import TicketsIndex from "./tickets/components/TicketsIndex";
 import TicketShow from "./tickets/components/TicketShow";
-import { index, destroy } from "./tickets/api";
+// import { index, destroy } from "./tickets/api";
 import TicketCreate from "./tickets/components/TicketCreate"
 import TicketUpdate from "./tickets/components/TicketUpdate";
 
@@ -21,8 +21,8 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: [],
-      tickets: []
+      alerts: []//,
+      // tickets: []
     }
   }
 
@@ -34,28 +34,28 @@ class App extends Component {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
 
-  componentDidMount(){
-    index() // excuting the api
-    .then( (response) => {
-        const tickets = response.data.tickets
-        let copyState = {...this.state}
-        copyState.tickets = tickets
-        this.setState(copyState)
-    })
-    .catch(error => console.log(error))
-} // end CWM
+//   componentDidMount(){
+//     index() // excuting the api
+//     .then( (response) => {
+//         const tickets = response.data.tickets
+//         let copyState = {...this.state}
+//         copyState.tickets = tickets
+//         this.setState(copyState)
+//     })
+//     .catch(error => console.log(error))
+// } // end CWM
 
-  destroy = (id) => {
-      destroy(id)
-      .then( () => alert("Are you sure you want to Delete?"))
-      .then( () => {
-          const tickets = this.state.tickets.filter( (ticket) => ticket._id !== id)
-          let copyState = {...this.state}
-          copyState.tickets = tickets
-          this.setState(copyState)
-      })
-      .catch( error => console.log(error))
-  } // end destroy
+//   destroy = (id) => {
+//       destroy(id)
+//       .then( () => alert("Are you sure you want to Delete?"))
+//       .then( () => {
+//           const tickets = this.state.tickets.filter( (ticket) => ticket._id !== id)
+//           let copyState = {...this.state}
+//           copyState.tickets = tickets
+//           this.setState(copyState)
+//       })
+//       .catch( error => console.log(error))
+//   } // end destroy
 
 
 
@@ -83,14 +83,24 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-  
-          <Route path="/tickets" exact render={ () => ( <TicketsIndex tickets={this.state.tickets} delete={this.destroy}/>) }/>
+
+          {/* <Route path="/tickets" exact render={ () => ( <TicketsIndex tickets={this.state.tickets} delete={this.destroy}/>) }/> */}
+
+          {/* I'm not showing /tickets unless the user is authenticated */}
+          <AuthenticatedRoute user={user} path="/tickets" exact render={ () => ( 
+          <TicketsIndex user={user} />) }/>
           
-          <Route path="/ticket/new" exact render={ () => ( <TicketCreate />) }/>
+          {/* <Route path="/ticket/new" exact render={ () => ( 
+          <TicketCreate />) }/> */}
 
-          <Route path="/ticket/edit/:id" exact render={ () => ( <TicketUpdate />) }/>
+          <AuthenticatedRoute user={user} path="/ticket/new" exact render={ () => ( 
+          <TicketCreate user={user} />) }/>
 
-          <Route path="/tickets/:id" render={ () => ( <TicketShow />) }/>
+          <AuthenticatedRoute user={user} path="/ticket/edit/:id" exact render={ () => ( 
+          <TicketUpdate user={user}/>) }/>
+
+          <AuthenticatedRoute user={user} path="/tickets/:id" render={ () => ( 
+          <TicketShow user={user} />) }/>
 
         </main>
       </React.Fragment>

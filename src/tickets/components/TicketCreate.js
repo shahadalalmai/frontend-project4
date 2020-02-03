@@ -26,11 +26,12 @@ class TicketCreate extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
+        const user = this.props.user
         // const formDataCopy = {...this.state.formData}
         const ticket = {...this.state.ticket}
         // console.log(this.state)
         // console.log(ticket)
-        create(ticket) 
+        create(user, ticket) 
         .then(() => alert("Ticket Created Sucessfully"))
         //.then(() => console.log(ticket))
         .catch((error) => console.log(error))

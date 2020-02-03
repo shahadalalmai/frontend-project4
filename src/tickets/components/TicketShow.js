@@ -7,9 +7,10 @@ class TicketShow extends Component {
         ticket: {}
      }
 
-     UNSAFE_componentWillMount() {
-        const ticketId = this.props.match.params.id
-        show(ticketId)
+     componentDidMount() {
+        const user = this.props.user
+        const ticketId = this.props.match.params.id // get the ticket id
+        show(user, ticketId)
         .then( response => {
             const ticket = response.data.ticket
             this.setState({
