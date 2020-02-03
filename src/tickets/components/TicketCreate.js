@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 class TicketCreate extends Component {
     state = { 
         ticket: {
-            source: "",
-            destination: "",
+            source: "Olaya Metro Station",
+            destination: "Qasr Al-Hukm Metro Station",
             date: "",
             price: 25
         }
      } // end state
+
 
     handleChange = (event) => {
         const inputTagName = event.target.name
@@ -41,13 +42,34 @@ class TicketCreate extends Component {
     render() { 
         return ( 
             <div>
+                <h1>This is New Ticket Component</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Source: </label>
-                    <input onChange={this.handleChange} type="text" name="source" value={this.state.ticket.source} placeholder="Source Station"/><br/>
+                    
+                    <select name="source" value={this.state.ticket.source} onChange={this.handleChange}>
+                        <option value="Olaya Metro Station">Olaya Metro Station</option>
+                        <option value="Western Metro Station">Western Metro Station</option>
+                        <option value="King Abdullah Financial District Metro Station">King Abdullah Financial District Metro Station</option>
+                        <option value="Qasr Al-Hukm Metro Station">Qasr Al-Hukm Metro Station</option>
+                    </select> <br/>
+                    
+                    {/* <input onChange={this.handleChange} type="text" name="source" value={this.state.ticket.source} placeholder="Source Station"/><br/> */}
+                    
                     <label>Destination: </label>
-                    <input onChange={this.handleChange} type="text" name="destination" value={this.state.ticket.destination} placeholder="Destination Station"/><br/>
+
+                    <select name="destination" value={this.state.ticket.destination} onChange={this.handleChange}>
+                        <option value="Olaya Metro Station">Olaya Metro Station</option>
+                        <option value="Western Metro Station">Western Metro Station</option>
+                        <option value="King Abdullah Financial District Metro Station">King Abdullah Financial District Metro Station</option>
+                        <option value="Qasr Al-Hukm Metro Station">Qasr Al-Hukm Metro Station</option>
+                    </select>  <br/>
+
+                    {/* <input onChange={this.handleChange} type="text" name="destination" value={this.state.ticket.destination} placeholder="Destination Station"/><br/> */}
+                    
                     <label>Date: </label>
-                    <input onChange={this.handleChange} type="text" name="date" value={this.state.ticket.date} placeholder="Date"/><br/>
+
+                    <input onChange={this.handleChange} type="date" name="date" value={this.state.ticket.date}/><br/>
+                    
                     <label>Price: {this.state.ticket.price} SAR</label> <br/>
                     <input type="submit" value="Submit"/>
                 </form>

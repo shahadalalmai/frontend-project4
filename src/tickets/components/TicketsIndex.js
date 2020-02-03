@@ -48,7 +48,8 @@ class TicketsIndex extends Component {
                     <div key={index}>
                        <p>Source: {ticket.source} </p>
                        <p>Destination: {ticket.destination} </p> 
-                       <p>Date: {ticket.date} </p> 
+                       {/* .format("DD-MM-YYYY") */}
+                       <p>Date: {(ticket.date).substring(0, 10)} </p> 
                        <p>Price: {ticket.price} SAR</p>
                        <button><Link to={`${this.props.match.path}/${ticket._id}`}> Show Route</Link></button> ||
                        <button><Link to={`/ticket/edit/${ticket._id}`}> Update</Link></button> ||
