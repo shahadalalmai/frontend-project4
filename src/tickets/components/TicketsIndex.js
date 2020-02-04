@@ -3,6 +3,8 @@ import { index, destroy } from "../api";
 // import { Route } from 'react-router-dom'
 // import TicketShow from "./TicketShow";
 import { Link , withRouter} from 'react-router-dom'
+import Card from'react-bootstrap/Card'
+import CardColumns from'react-bootstrap/CardColumns'
 
 
 class TicketsIndex extends Component {
@@ -20,7 +22,7 @@ class TicketsIndex extends Component {
             })
         })
         .catch(error => console.log(error))
-    } // end CWM
+    } // end CDM
 
     destroy = (id) => {
         const user = this.props.user
@@ -45,21 +47,23 @@ class TicketsIndex extends Component {
         return (  
             <div>
                 
-                <h1>Tickets Index Component</h1>
+                <h1 style={{paddingBottom: "7%", color: "#717070"}}>Your Tickets</h1>
+                <CardColumns>
                 {this.state.tickets.map( (ticket, index) => (
-                    <div key={index}>
+                    <Card className="cardBody" key={index}>
+                        <img src="https://files.slack.com/files-pri/TA2AHQDQ8-FTHB9UJHE/shahad_alalmai_linkedin.png" width="120" height="120" alt="" />
                        <p>Source: {ticket.source} </p>
                        <p>Destination: {ticket.destination} </p> 
                        {/* .format("DD-MM-YYYY") */}
                        {/* <p>Date: {(ticket.date).substring(0, 10)} </p>  */}
                        <p>Date: {ticket.date} </p> 
                        <p>Price: {ticket.price} SAR</p>
-                       <button><Link to={`/tickets/${ticket._id}`}> Show Route</Link></button> ||
-                       <button><Link to={`/ticket/edit/${ticket._id}`}> Update</Link></button> ||
-                       <button onClick={() => this.destroy(ticket._id)}> Cancel </button>
-                       <hr/>
-                    </div>
+                       <Link to={`/tickets/${ticket._id}`}> <img src="https://cdn0.iconfinder.com/data/icons/transport-14/512/Train_Green.png" alt="" width="45" height="45"/></Link> ||
+                        <img onClick={() => this.destroy(ticket._id)} src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png" alt="" width="43" height="43"/> 
+                        || <img src="https://cdn0.iconfinder.com/data/icons/basic-8/97/5-512.png" width="45" height="45" alt="" />
+                    </Card>
                 ) )}
+                </CardColumns>
             </div>
          )
     }

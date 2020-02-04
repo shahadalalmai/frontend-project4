@@ -14,6 +14,10 @@ import TicketShow from "./tickets/components/TicketShow";
 // import { index, destroy } from "./tickets/api";
 import TicketCreate from "./tickets/components/TicketCreate"
 import TicketUpdate from "./tickets/components/TicketUpdate";
+import ToursIndex from './tours/ToursIndex'
+import SimpleImageSlider from "react-simple-image-slider";
+import Footer from "./footer/Footer";
+import Stations from "./stations/Stations";
 
 class App extends Component {
   constructor () {
@@ -21,8 +25,8 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []//,
-      // tickets: []
+      alerts: [],
+      cart : []
     }
   }
 
@@ -34,35 +38,28 @@ class App extends Component {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
 
-//   componentDidMount(){
-//     index() // excuting the api
-//     .then( (response) => {
-//         const tickets = response.data.tickets
-//         let copyState = {...this.state}
-//         copyState.tickets = tickets
-//         this.setState(copyState)
-//     })
-//     .catch(error => console.log(error))
-// } // end CWM
 
-//   destroy = (id) => {
-//       destroy(id)
-//       .then( () => alert("Are you sure you want to Delete?"))
-//       .then( () => {
-//           const tickets = this.state.tickets.filter( (ticket) => ticket._id !== id)
-//           let copyState = {...this.state}
-//           copyState.tickets = tickets
-//           this.setState(copyState)
-//       })
-//       .catch( error => console.log(error))
-//   } // end destroy
+  addToCart = (tour) => {
+          let copyState = {...this.state}
+          copyState.cart.push(tour)
+          this.setState(copyState)
+  } // end addToCart
+
+//https://www.arabnews.com/sites/default/files/styles/n_670_395/public/2014/09/30/1411997904686549900.jpg?itok=MtKXzByS
+  render () { //http://riyadhmetro.sa/wp-content/uploads/2018/01/5C0A5883.jpg
+    const images = [ 
+      { url: "https://live.staticflickr.com/65535/49488910911_d886678e8a_k.jpg" }, //src/images/1.jpg
+      { url: "http://riyadhmetro.sa/wp-content/uploads/2017/01/station6.jpg" },
+      { url: "https://s3.eu-central-1.amazonaws.com/news-image-2.motory.com/n-636x320/news0-1452439615.jpeg" },
+      { url: "http://riyadhmetro.sa/wp-content/uploads/2017/01/station1.jpg" },
+      { url: "http://riyadhmetro.sa/wp-content/uploads/2017/01/station2.jpg" },
+      { url: "http://riyadhmetro.sa/wp-content/uploads/2017/01/station3.jpg" },
+      { url: "http://riyadhmetro.sa/wp-content/uploads/2017/01/station5.jpg" },
+      { url: "http://riyadhmetro.sa/wp-content/uploads/2017/01/station6.jpg" }
+  ]
 
 
-
-
-
-  render () {
-    const { alerts, user } = this.state
+  const { alerts, user } = this.state
 
     return (
       <React.Fragment>
@@ -70,6 +67,24 @@ class App extends Component {
         {alerts.map((alert, index) => (
           <AlertDismissible key={index} variant={alert.type} message={alert.message} />
         ))}
+        
+        <Route path="/" exact render={() => (
+            <div className="slider">
+              <SimpleImageSlider
+               width={1400}
+               height={504}
+               images={images}
+              />
+            </div>
+            )}/>
+
+        <Route path="/" exact render={() => (
+          <Stations/>
+            )}/>
+
+        
+        
+        
         <main className="container">
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
@@ -83,6 +98,15 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
+
+          <Route path="/" exact render={() => (
+            <div>
+              
+              <ToursIndex cart={this.state.cart} addToCart={this.addToCart}/>
+            </div>
+            )}/>
+
+          
 
           {/* <Route path="/tickets" exact render={ () => ( <TicketsIndex tickets={this.state.tickets} delete={this.destroy}/>) }/> */}
 
@@ -103,6 +127,9 @@ class App extends Component {
           <TicketShow user={user} />) }/>
 
         </main>
+
+        <Footer/>
+
       </React.Fragment>
     )
   }

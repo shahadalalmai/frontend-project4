@@ -1,0 +1,33 @@
+.cardBody{
+    padding-left: 3.5%;
+    padding-right: 3.5%;
+    padding-top: 3.5%;
+    
+}
+
+.imgFloat{
+    float: left;
+   margin-top: 1.5%;
+   margin-right: 2%;
+}
+
+.status{
+    background: #71A974;
+    color: white;
+    width: fit-content;
+    padding: 1% 2%;
+    border-radius: 6px;
+
+}
+
+.bottomRight {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    color: darkred;
+}
+
+.h:hover{
+    box-shadow: 5px 5px 15px grey;
+    cursor: pointer;
+}

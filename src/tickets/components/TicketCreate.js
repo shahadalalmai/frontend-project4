@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { create } from "../api";
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 class TicketCreate extends Component {
     state = { 
@@ -33,6 +34,7 @@ class TicketCreate extends Component {
         // console.log(ticket)
         create(user, ticket) 
         .then(() => alert("Ticket Created Sucessfully"))
+        .then(() => this.props.history.push('/tickets'))
         //.then(() => console.log(ticket))
         .catch((error) => console.log(error))
     }
@@ -42,8 +44,8 @@ class TicketCreate extends Component {
 
     render() { 
         return ( 
-            <div>
-                <h1>This is New Ticket Component</h1>
+            <div className='auth-form'>
+                <h1 style={{paddingBottom: "7%", color: "#717070"}}>Book Your Online Ticket</h1>
                 <form onSubmit={this.handleSubmit}>
                     <label>Source: </label>
                     
@@ -74,10 +76,10 @@ class TicketCreate extends Component {
                     <label>Price: {this.state.ticket.price} SAR</label> <br/>
                     <input type="submit" value="Submit"/>
                 </form>
-            <Link to="/tickets"> Back</Link>
+            {/* <Link to="/tickets"> Back</Link> */}
             </div>
          )
     }
 }
  
-export default TicketCreate;
+export default withRouter(TicketCreate);

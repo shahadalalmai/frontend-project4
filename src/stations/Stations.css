@@ -1,0 +1,17 @@
+.stations {
+    border: none;
+   
+}
+
+.stationsColum {
+    margin: 2% 7%;
+    text-align: center;
+
+
+}
+
+.stationsbg {
+    background: #F2F2F2;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}

@@ -46,6 +46,7 @@ class TicketUpdate extends Component {
         // console.log(ticket)
         update(user, ticket, ticketId)
         .then(() => alert("Ticket Updated Sucessfully"))
+        .then(() => this.props.history.push('/tickets'))
         // .then(() => console.log(ticket))
         .catch((error) => console.log(error))
     } // end handleSubmit

@@ -25,8 +25,8 @@ class TicketShow extends Component {
         // const ticketId = this.props.match.params.id
         return ( 
             
-            <div>
-                <h1>This is Ticket Show Component</h1>
+            <div className='auth-form'>
+                <h1 style={ {textAlign: "center", marginBottom: "3%", marginTop: "2%"}}>Your Ticket Details</h1>
                 <p>Source: {this.state.ticket.source} </p>
                 <p>Destination: {this.state.ticket.destination} </p> 
                 <p>Date: {this.state.ticket.date} </p> 
