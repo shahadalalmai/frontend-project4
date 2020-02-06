@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom'
 import { show } from "../api";
+import Card from'react-bootstrap/Card'
 
 class TicketShow extends Component {
     state = { 
@@ -25,14 +26,15 @@ class TicketShow extends Component {
         // const ticketId = this.props.match.params.id
         return ( 
             
-            <div className='auth-form'>
-                <h1 style={ {textAlign: "center", marginBottom: "3%", marginTop: "2%"}}>Your Ticket Details</h1>
+            <Card className="cardBody" className='auth-form'>
+                <h1 style={ {textAlign: "center", marginBottom: "3%", marginTop: "2%" , color: "#717070"}}>Your Ticket Details</h1>
+                <img src="https://files.slack.com/files-pri/TA2AHQDQ8-FTHB9UJHE/shahad_alalmai_linkedin.png" width="120" height="120" alt="" />
                 <p>Source: {this.state.ticket.source} </p>
                 <p>Destination: {this.state.ticket.destination} </p> 
                 <p>Date: {this.state.ticket.date} </p> 
                 <p>Price: {this.state.ticket.price} SAR</p>
                 <Link to="/tickets"> Back</Link>
-            </div>
+            </Card>
          )
     }
 }

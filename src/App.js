@@ -71,7 +71,7 @@ class App extends Component {
         <Route path="/" exact render={() => (
             <div className="slider">
               <SimpleImageSlider
-               width={1400}
+               width={1470}
                height={504}
                images={images}
               />

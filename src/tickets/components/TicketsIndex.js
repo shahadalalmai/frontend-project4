@@ -5,6 +5,8 @@ import { index, destroy } from "../api";
 import { Link , withRouter} from 'react-router-dom'
 import Card from'react-bootstrap/Card'
 import CardColumns from'react-bootstrap/CardColumns'
+import './TicketIndex.css'
+
 
 
 class TicketsIndex extends Component {
@@ -59,8 +61,10 @@ class TicketsIndex extends Component {
                        <p>Date: {ticket.date} </p> 
                        <p>Price: {ticket.price} SAR</p>
                        <Link to={`/tickets/${ticket._id}`}> <img src="https://cdn0.iconfinder.com/data/icons/transport-14/512/Train_Green.png" alt="" width="45" height="45"/></Link> ||
-                        <img onClick={() => this.destroy(ticket._id)} src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png" alt="" width="43" height="43"/> 
-                        || <img src="https://cdn0.iconfinder.com/data/icons/basic-8/97/5-512.png" width="45" height="45" alt="" />
+                        <Link to={`/ticket/edit/${ticket._id}`}><img src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/35-512.png" alt="" width="43" height="43"/> </Link>
+                        || <img onClick={() => this.destroy(ticket._id)} src="https://cdn0.iconfinder.com/data/icons/basic-8/97/5-512.png" width="45" height="45" alt="" />  
+                        
+                        <Link className="bottomRight" to={`/tickets`}> <img src="https://www.festivalclaca.cat/imgfv/m/125-1257662_add-to-apple-wallet-badge-add-to-apple.png" alt="" width="150" height="55"/></Link>
                     </Card>
                 ) )}
                 </CardColumns>
@@ -69,4 +73,5 @@ class TicketsIndex extends Component {
     }
 }
  
+// <img src="https://www.festivalclaca.cat/imgfv/m/125-1257662_add-to-apple-wallet-badge-add-to-apple.png" width="80" height="20" alt="" />
 export default withRouter(TicketsIndex)

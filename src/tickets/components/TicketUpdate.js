@@ -56,8 +56,11 @@ class TicketUpdate extends Component {
         console.log(this)
         return ( 
         <div>
-            <h1>Hi this is TicketUpdate Component</h1>
-            <form onSubmit={this.handleSubmit}>
+            
+            <form className='auth-form' onSubmit={this.handleSubmit}>
+            <h1 style={{paddingBottom: "7%", color: "#717070"}}>Update Your Ticket</h1>
+            <p>Note: Your ticket is valid for 24 hours</p>
+                    
                     <label>Source: </label>
 
                     <select name="source" value={this.state.ticket.source} onChange={this.handleChange}>

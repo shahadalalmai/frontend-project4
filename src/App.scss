@@ -56,12 +56,20 @@ $charcoal: #ccc;
 //   // text-emphasis: emphasis;
 // }
 
-.slider {
-margin-left: 0.5%;
-// text-align: center;
-box-shadow: 7px 7px 7px #00000012;
-}
+// .slider {
+// margin-left: 0.5%;
+// // text-align: center;
+// width: 100% !important;
+// box-shadow: 7px 7px 7px #00000012;
+// }
 
 a {
   color: green;
+}
+
+.bottomRight {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  color: darkred;
 }

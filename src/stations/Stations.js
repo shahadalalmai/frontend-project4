@@ -12,7 +12,7 @@ class Stations extends Component {
                 <CardColumns className="stationsColum">
                     <Card className="stations">
                     <h4 style={{paddingTop: "3%", color: "#717070"}}>85 Train Stations</h4><br/>
-                    <img src="https://lh3.googleusercontent.com/proxy/UBkbrkRWhKbMX52ZZdPv_m1B6-GmrE2tjZ5iAXGRWLgjmYTLaY4XBBFq0kHxpc5-ytNqbVfOoEVGJEHdjhmLT3ci36_ue05btwLW7L4G3g" alt="" width="200" height="300" /> 
+                    <img src="https://lh3.googleusercontent.com/proxy/SzACpvcLfGJE8fZSib8sivKm2QTNDLL2TZlorlrqKhPbKkCItaCzPf3qT_ECEPmzBxUtLZFGiXbdMA6OKieGs0GoPVfmZ0sQ5IGab1UMtg" alt="" width="200" height="300" /> 
                     </Card>
 
                     <Card className="stations">
